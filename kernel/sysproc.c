@@ -91,3 +91,16 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+uint64
+sys_trace(void)
+{
+    int mask;
+    argint(0, &mask);
+    struct proc *p = myproc();
+    p->trace_mask = mask;
+
+    printf("DEBUG: trace system call called with mask = %d by PID = %d\n", mask, p->pid);
+ 
+    return 0;
+}

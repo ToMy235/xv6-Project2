@@ -93,7 +93,7 @@ int
 allocpid()
 {
   int pid;
-  
+ 
   acquire(&pid_lock);
   pid = nextpid;
   nextpid = nextpid + 1;
@@ -317,6 +317,8 @@ fork(void)
   acquire(&wait_lock);
   np->parent = p;
   release(&wait_lock);
+
+  np->trace_mask = p->trace_mask;
 
   acquire(&np->lock);
   np->state = RUNNABLE;
