@@ -1,5 +1,5 @@
 #include "kernel/sysinfo.h"
-#include "user.h"
+#include "user/user.h"
 
 int main() {
   struct sysinfo info;
