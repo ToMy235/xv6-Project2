@@ -101,8 +101,6 @@ sys_trace(void)
     argint(0, &mask);
     struct proc *p = myproc();
     p->trace_mask = mask;
-
-    printf("DEBUG: trace system call called with mask = %d by PID = %d\n", mask, p->pid);
  
     return 0;
 }
