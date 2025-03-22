@@ -105,19 +105,17 @@ sys_trace(void)
     return 0;
 }
 uint64
-sys_sysinfo(void) {
-    uint64 addr;
-    struct sysinfo info;
-    struct proc* p = myproc();
+sys_sysinfo(void) { 
+int addr;
+struct sysinfo info;
+struct proc*p =myproc();
+argint(0, &addr);
 
-    if (arguint64(0, &addr) < 0)  
-        return -1;
+info.freemem = nfree();
+info.nproc = nproc();
 
-    info.freemem = nfree();
-    info.nproc = nproc();
+if (copyout(p->pagetable, addr, (char*)&info, sizeof(info)) < 0)
+return -1;
 
-    if (copyout(p->pagetable, addr, (char*)&info, sizeof(info)) < 0)
-        return -1;
-    
-    return 0;
+return 0;
 }
