@@ -137,7 +137,7 @@ static char *syscall_names[] = {
   "void", "fork", "exit", "wait", "pipe", "read", "kill", "exec",
   "fstat", "chdir", "dup", "getpid", "sbrk", "sleep", "uptime",
   "open", "write", "mknod", "unlink", "link", "mkdir", "close",
-  "trace"
+  "trace","sysinfo"
 };
 
 void
